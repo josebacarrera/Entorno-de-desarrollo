@@ -1,0 +1,383 @@
+/* Google Font 'Poppins'  */
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');*/
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; 
+}
+
+
+
+body {
+    width: 100%;
+    height: 100vh;
+	background: silver;
+    /*background: #808285;*/ 
+   /* font-family: 'Poppins', sans-serif; */
+   /* font-style: normal; */
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    width: 70%;
+    height: 52%;
+    /* border: 1px solid #fff; */
+    margin: 0px 20px;
+    border-radius: 20px; 
+    overflow: hidden;
+}
+
+.europa {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('img/europa.jpg') /*no-repeat center center/cover;*/
+    opacity: .5;
+}
+
+.centurion {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('img/centurion.jpg') /*no-repeat center center/cover;*/
+    opacity: .5;
+}
+
+.debit_card {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+/*
+.card .debit_card2 {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+*/
+.debit_card2 {
+    position: absolute;
+	margin-left: 50px;
+    top: 20px;
+    text-align: center;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 5px;
+    font-size: 18px;
+}
+/*
+.card .bank {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-style: italic;
+    color: #fff;
+    letter-spacing: 1px;
+}
+*/
+.bank span {
+    font-weight: 300;
+}
+
+
+ .chip {
+    position: absolute;
+    width: 60px;
+    height: 45px;
+    background: #e9df4e;
+    border-radius: 5px;
+    top: 60px;
+    left: 25px;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.chip h6:nth-child(1) {
+    width: 25px;
+    height: 15px;
+    border: 1px solid #000;
+    margin-top: -1px;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.chip h6:nth-child(2) {
+    width: 25px;
+    height: 10px;
+    border: 1px solid #000;
+    margin-top: -1px;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.chip h6:nth-child(3) {
+    width: 25px;
+    height: 10px;
+    border: 1px solid #000;
+    margin-top: -1px;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.chip h6:nth-child(4) {
+    width: 25px;
+    height: 18px;
+    border: 1px solid #000;
+    margin-top: -1px;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.chip h6:nth-child(5) {
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    border-bottom: 1px solid #000;
+    top: 0;
+    left: 25px;
+}
+
+ .chip h6:nth-child(6) {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    border-bottom: 1px solid #000;
+    top: 10px;
+    left: 25px;
+}
+
+.chip h6:nth-child(7) {
+    position: absolute;
+    width: 25px;
+    height: 10px;
+    border: 1px solid #000;
+    top: 15px;
+    left: 45px;
+}
+
+.chip h6:nth-child(8) {
+    position: absolute;
+    width: 25px;
+    height: 10px;
+    border: 1px solid #000;
+    border-top: 0px;
+    top: 25px;
+    left: 45px;
+}
+
+.chip h6:nth-child(9) {
+    position: absolute;
+    width: 25px;
+    height: 15px;
+    border: 1px solid #000;
+    border-top: 0px;
+    top: 35px;
+    left: 45px;
+}
+
+.number {
+    position: absolute;
+    width: 300px;
+    height: 20px;
+    /* border: 1px solid #fff; */
+    top: 130px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.number h6 {
+    color: #fff;
+    font-size: 25px;
+    font-family: Digital_Font;
+    letter-spacing: 3px;
+}
+
+.number2 {
+    position: absolute;
+    width: 300px;
+    height: 20px;
+    /* border: 1px solid #fff; */
+    top: 130px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.number2 h6 {
+    color: silver;
+    font-size: 25px;
+    font-family: Digital_Font;
+    letter-spacing: 3px;
+}
+
+.wave {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 124px;
+    right: 20px;
+}
+
+.wave2 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 124px;
+    right: 20px;
+}
+
+.ex_date {
+    position: absolute;
+    top: 165px;
+    left: 25px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.ex_date span {
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 10px;
+}
+
+.ex_date h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 12px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.ex_date h3 span {
+    font-size: 12px;
+    margin: 0px 2px;
+}
+
+.ex_date2 {
+    position: absolute;
+    top: 165px;
+    left: 25px;
+    color: silver;
+    display: flex;
+    align-items: center;
+}
+
+.ex_date2 span {
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 10px;
+}
+
+.ex_date2 h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 12px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.ex_date2 h3 span {
+    font-size: 12px;
+    margin: 0px 2px;
+}
+
+.name {
+    position: absolute;
+    top: 195px;
+    left: 25px;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #fff;
+}
+
+.name2 {
+    position: absolute;
+    top: 250px;
+    left: 15px;
+    font-size: 9px;
+    font-weight: 200;
+    letter-spacing: 3px;
+    color: silver;
+}
+
+.cvv {
+    position: absolute;
+    color: #fff;
+    top: 230px;
+    left: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.cvv h5 {
+    font-size: 14px;
+    margin-left: 5px;
+    background: #121213;
+    padding: 1px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+}
+
+.cvv2 {
+    position: absolute;
+    color: silver;
+    top: 230px;
+    right: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.cvv2 h5 {
+    font-size: 14px;
+    margin-right: 5px;
+    background: #121213;
+    padding: 1px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+}
+
+.visa {
+    position: absolute;
+    top: 200px;
+    right: 5px;
+    width: 110px;
+    height: 80px;
+}
+
+/*
+.card:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*background: rgb(184, 184, 184, .1); 
+}
+*/

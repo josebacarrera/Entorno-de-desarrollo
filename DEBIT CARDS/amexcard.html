@@ -1,0 +1,355 @@
+<?php 
+require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php' );
+
+if (is_user_logged_in()) {
+
+echo <<<EOT
+<form method="post">
+     <input type="submit" name="American" value="INTERNATIONAL" />
+</form>
+EOT;
+
+if (isset($_POST['American'])) {
+   $card = "INTERNATIONAL";
+
+$url = "http://192.168.1.67:4000/enablecard4/user1/" .$card;
+//Iniciamos un recurso CURL en $curl
+$curl = curl_init($url);
+
+//Indicamos que nos devuelva la información capturada
+//como la información de retorno
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+//Realizamos la llamada
+$response = curl_exec($curl);
+
+//Cerramos el recurso (Liberamos memoria)
+curl_close($curl);
+}
+
+
+$url="http://192.168.1.67:4000/infocards4/user1/";
+
+//Iniciamos un recurso CURL en $curl
+$curl = curl_init($url);
+
+//Indicamos que nos devuelva la información capturada
+//como la información de retorno
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+//Realizamos la llamada
+$response = curl_exec($curl);
+
+//Cerramos el recurso (Liberamos memoria)
+curl_close($curl);
+
+$key = 'KeyMustBe16ByteOR24ByteOR32ByT4!';
+$encrypt_method = "aes-256-ecb";
+$output = openssl_decrypt($response,  $encrypt_method, $key);
+$output = json_decode($output);
+//var_dump($output);
+
+
+//$card_int = $output["card_international"];
+//$card_eur = $output["card_europe"];
+//$lastactive_int = $output["lastactive_int"];
+//$lastactive_eur = $output["lastactive_eur"];
+//$current_card = $output["current_card"];
+//echo $output->current_card;
+
+
+echo <<<EOT
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>American Express</title>
+<style>
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; 
+}
+
+
+
+.card {
+    position: relative;
+    width:400px;
+    height: 270px;
+    /* border: 1px solid #fff; */
+    margin: 20px 20px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card .centurion {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://wordpress.maristak.com/wp-content/uploads/2022/11/centurion.jpg') /*no-repeat center center/cover;*/
+    opacity: .5;
+}
+
+.card .debit_card2 {
+    position: absolute;
+	margin-left: 50px;
+    top: 20px;
+    text-align: center;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 5px;
+    font-size: 18px;
+}
+
+.card .chip {
+    position: absolute;
+    width: 60px;
+    height: 45px;
+    background: #e9df4e;
+    border-radius: 5px;
+    top: 60px;
+    left: 25px;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.card .chip h6:nth-child(1) {
+    width: 25px;
+    height: 15px;
+    border: 1px solid #000;
+    margin-top: -1px;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.card .chip h6:nth-child(2) {
+    width: 25px;
+    height: 10px;
+    border: 1px solid #000;
+    margin-top: -1px;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.card .chip h6:nth-child(3) {
+    width: 25px;
+    height: 10px;
+    border: 1px solid #000;
+    margin-top: -1px;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.card .chip h6:nth-child(4) {
+    width: 25px;
+    height: 18px;
+    border: 1px solid #000;
+    margin-top: -1px;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.card .chip h6:nth-child(5) {
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    border-bottom: 1px solid #000;
+    top: 0;
+    left: 25px;
+}
+
+.card .chip h6:nth-child(6) {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    border-bottom: 1px solid #000;
+    top: 10px;
+    left: 25px;
+}
+
+.card .chip h6:nth-child(7) {
+    position: absolute;
+    width: 25px;
+    height: 10px;
+    border: 1px solid #000;
+    top: 15px;
+    left: 45px;
+}
+
+.card .chip h6:nth-child(8) {
+    position: absolute;
+    width: 25px;
+    height: 10px;
+    border: 1px solid #000;
+    border-top: 0px;
+    top: 25px;
+    left: 45px;
+}
+
+.card .chip h6:nth-child(9) {
+    position: absolute;
+    width: 25px;
+    height: 15px;
+    border: 1px solid #000;
+    border-top: 0px;
+    top: 35px;
+    left: 45px;
+}
+
+.card .number2 {
+    position: absolute;
+    width: 300px;
+    height: 20px;
+    /* border: 1px solid #fff; */
+    top: 130px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card .number2 h6 {
+    color: silver;
+    font-size: 25px;
+    font-family: Digital_Font;
+    letter-spacing: 3px;
+}
+
+.card .wave2 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 124px;
+    right: 20px;
+}
+
+.card .ex_date2 {
+    position: absolute;
+    top: 165px;
+    left: 25px;
+    color: silver;
+    display: flex;
+    align-items: center;
+}
+
+.card .ex_date2 span {
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 10px;
+}
+
+.card .ex_date2 h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 12px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+	  color: silver;
+}
+
+.card .ex_date2 h3 span {
+    font-size: 12px;
+    margin: 0px 2px;
+}
+
+.card .name2 {
+    position: absolute;
+    top: 250px;
+    left: 15px;
+    font-size: 9px;
+    font-weight: 200;
+    letter-spacing: 3px;
+    color: silver;
+}
+
+.card .cvv2 {
+    position: absolute;
+    color: silver;
+    top: 230px;
+    right: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.card .cvv2 h5 {
+    font-size: 14px;
+    margin-right: 5px;
+    background: #121213;
+    padding: 1px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+	  color: silver;
+}
+
+
+
+</style>
+</head>
+
+<body>	
+
+
+    <div class="card" id="visaAmericana" onclick="tarjetaAmericana()">        
+		<img src="https://wordpress.maristak.com/wp-content/uploads/2022/11/centurion.jpg" alt="" class="centurion"> 
+       <!-- <h4 class="bank">KDS <span>BANK</span></h4> -->
+	   <h4 class="debit_card2">AMERICAN EXPRESS</h4>
+        <div class="chip">
+            <h6></h6>
+            <h6></h6>
+            <h6></h6>
+            <h6></h6>
+            <h6></h6>
+            <h6></h6>
+            <h6></h6>
+            <h6></h6>
+            <h6></h6>
+        </div>
+        <div class="number2">
+            <h6>$output->card_international</h6>
+           
+        </div>
+        <img src="https://wordpress.maristak.com/wp-content/uploads/2022/11/wave.png" alt="" class="wave2">
+        <div class="ex_date2">
+            <span>VALID<br>UPTO</span>
+            <h3>05 <span>/</span> 16</h3>
+        </div>
+        <h2 class="name2">JON VICANDI JAVIER</h2>
+        <div class="cvv2">
+            <span>CVV</span>
+            <h5>1122</h5>
+        </div>
+        
+    </div>
+
+<script>
+console.log("$output->current_card")
+
+if ("$output->current_card" == "INTERNATIONAL")
+{
+ document.getElementById("visaAmericana").style.opacity="25";
+    document.getElementById("visaeuropea").style.opacity="0.1";    
+}
+else
+{
+ document.getElementById("visaAmericana").style.opacity="0.1";
+ document.getElementById("visaeuropea").style.opacity="25";
+}
+
+</script>
+
+
+ </body> 
+</html>
+EOT;
+}
+?>
