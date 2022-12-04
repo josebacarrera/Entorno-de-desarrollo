@@ -6,7 +6,7 @@ include("base/header.php");
 include("base/head.php");
 include("base/db.php");
 if (!is_user_logged_in()) {
-    header('location:logout.php');
+    header("Location: https://wordpress.maristak.com/error-404/");
 } else {
 
 
@@ -18,8 +18,6 @@ if (!is_user_logged_in()) {
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap5.min.css">
 
     <!-- partial -->
-
-
 
 
 
@@ -35,7 +33,7 @@ if (!is_user_logged_in()) {
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Reporte del gasto mensual</h4>
+                            <h4 class="card-title">Reporte de gastos (Fechas)</h4>
 
                             <div class="table-responsive">
                                 <?php
@@ -49,14 +47,14 @@ if (!is_user_logged_in()) {
                                         <tr>
                                             <th>S.NO</th>
                                             <th>Fecha</th>
-                                            <th>Importe del gasto</th>
+                                            <th>Cantidad gastada</th>
                                         </tr>
                                         </tr>
                                     </thead>
 
                                     <?php
                                     $userId = get_current_user_id();
-                                    $sql = "SELECT month(expenseDate) as rptmonth,year(expenseDate) as rptyear,SUM(itemCost) as totalmonth FROM expense  where (expenseDate BETWEEN '$fdate' and '$tdate') && (userId='$userId') group by month(expenseDate),year(expenseDate)";
+                                    $sql = "SELECT expenseDate, itemCost FROM `expense` where (expenseDate BETWEEN '$fdate' and '$tdate') && (userId='$userId') group by expenseDate";
                                     $query = mysqli_query($conn, $sql);
                                     $count = 1;
                                     while ($row = mysqli_fetch_array($query)) {
@@ -64,17 +62,17 @@ if (!is_user_logged_in()) {
                                     ?>
                                         <tr class="tblpad">
                                             <td><?php echo $count; ?></td>
-                                            <td><?php echo $row['rptmonth'] . "-" . $row['rptyear']; ?></td>
-                                            <td><?php echo $ttlsl = $row['totalmonth']; ?></td>
+                                            <td><?php echo $row['expenseDate']; ?></td>
+                                            <td><?php echo $ttlsl = $row['itemCost']; ?> €</td>
                                         </tr>
                                     <?php
-                                       $totalsexp += $ttlsl;
-                                       $cnt = $cnt + 1;
+                                        $totalsexp += $ttlsl;
+                                        $count = $count + 1;
                                     } ?>
 
                                     <tr>
                                         <th colspan="2" style="text-align:center">Total</th>
-                                        <td><?php echo $totalsexp; ?></td>
+                                        <td><?php echo $totalsexp; ?> €</td>
                                     </tr>
 
 
@@ -87,7 +85,6 @@ if (!is_user_logged_in()) {
                 </div>
             </div>
         </div>
-
 
         <?php include("base/footer.php"); ?>
 

@@ -5,7 +5,7 @@ include("base/header.php");
 include("base/head.php");
 include("base/db.php");
 if (!is_user_logged_in()) {
-    echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/login/")</script>';
+    header("Location: https://wordpress.maristak.com/error-404/");
 } else {
 
 
@@ -20,7 +20,7 @@ if (!is_user_logged_in()) {
 
 
         <?php
-        $uId = get_current_user_id();
+        $uId = is_user_logged_in();
         $query1 = mysqli_query($conn, "select sum(itemCost) as totalexpense from expense where userId='$uId';");
         $result1 = mysqli_fetch_array($query1);
         $total_expenses = $result1['totalexpense'];
@@ -45,7 +45,7 @@ if (!is_user_logged_in()) {
 
 
         <?php
-        $uId = get_current_user_id();
+        $uId = is_user_logged_in();
         $tdate = date('Y-m-d');
         $query = mysqli_query($conn, "select sum(itemCost)  as todaysexpense from expense where (expenseDate)='$tdate' && (userId='$uId');");
         $result = mysqli_fetch_array($query);
@@ -71,7 +71,7 @@ if (!is_user_logged_in()) {
 
 
                 <?php
-                $uId = get_current_user_id();
+                $uId = is_user_logged_in();
                 $ydate = date('Y-m-d', strtotime("-1 days"));
                 $query1 = mysqli_query($conn, "select sum(itemCost)  as yesterdayexpense from expense where (expenseDate)='$ydate' && (userId='$uId');");
                 $result1 = mysqli_fetch_array($query1);
@@ -93,7 +93,7 @@ if (!is_user_logged_in()) {
                 </div>
 
                 <?php
-                $uId = get_current_user_id();
+                $uId = is_user_logged_in();
                 $pastdate =  date("Y-m-d", strtotime("-1 week"));
                 $crrntdte = date("Y-m-d");
                 $query2 = mysqli_query($conn, "select sum(itemCost)  as weeklyexpense from expense where ((expenseDate) between '$pastdate' and '$crrntdte') && (userId='$uId');");
@@ -117,7 +117,7 @@ if (!is_user_logged_in()) {
 
 
                 <?php
-                $uId = get_current_user_id();
+                $uId = is_user_logged_in();
                 $monthdate =  date("Y-m-d", strtotime("-1 month"));
                 $crrntdte = date("Y-m-d");
                 $query3 = mysqli_query($conn, "select sum(itemCost)  as monthlyexpense from expense where ((expenseDate) between '$monthdate' and '$crrntdte') && (userId='$uId');");
@@ -141,7 +141,7 @@ if (!is_user_logged_in()) {
 
 
                 <?php
-                $uId = get_current_user_id();
+                $uId = is_user_logged_in();
                 $cyear = date("Y");
                 $query4 = mysqli_query($conn, "select sum(itemCost)  as yearlyexpense from expense where (year(expenseDate)='$cyear') && (userId='$uId');");
                 $result4 = mysqli_fetch_array($query4);

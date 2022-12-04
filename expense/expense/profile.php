@@ -6,7 +6,7 @@ include("base/head.php");
 include("base/db.php");
 require_once ($_SERVER ['DOCUMENT_ROOT'].'/wp-load.php');
 if (!is_user_logged_in()) {
-    header('location:logout.php');
+    echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/error-404/")</script>';
 } else {
 
 
@@ -42,7 +42,7 @@ if (!is_user_logged_in()) {
                             <?php
                             $userId = get_current_user_id();
 
-                            $sql = "select * from users where id='$userId'";
+                            $sql = "select user_login, user_email, user_registered, mobile from wp_users where id='$userId'";
 
                             $query = mysqli_query($conn, $sql);
 
@@ -56,12 +56,12 @@ if (!is_user_logged_in()) {
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Nombre</label>
-                                            <input type="text" class="form-control"  placeholder="Admin Name" value="<?php echo $row['name']; ?>" name="name" required="true">
+                                            <input type="text" class="form-control"  placeholder="Nombre" value="<?php echo $row['user_login']; ?>" name="name" required="true">
                                         </div>
 
                                         <div class=" form-group col-md-6">
                                             <label for="inputEmail4">Email</label>
-                                            <input type="text" class="form-control" placeholder="User Name" name="email" value="<?php echo $row['email'];  ?>" name="email" required="true">
+                                            <input type="text" class="form-control" placeholder="Email" name="email" value="<?php echo $row['user_email'];  ?>" name="email" required="true">
                                         </div>
                                     </div>
 
@@ -70,11 +70,11 @@ if (!is_user_logged_in()) {
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Movil</label>
-                                            <input type="text" class="form-control" placeholder="Mobile" name="mobile" value="<?php echo $row['mobile']; ?>" name="mobile"  required="true">
+                                            <input type="text" class="form-control" placeholder="Movil" name="mobile" value="<?php echo $row['mobile']; ?>" name="mobile"  required="true">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Fecha de registro</label>
-                                            <input type="email" class="form-control"  placeholder="Reg Date" value="<?php echo $row['regDate']; ?>" readonly>
+                                            <input type="email" class="form-control"  placeholder="Fecha De Registro" value="<?php echo $row['user_registered']; ?>" readonly>
                                         </div>
 
                                     </div>

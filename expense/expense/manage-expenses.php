@@ -9,14 +9,103 @@ include("base/header.php");
 include("base/head.php");
 include("base/db.php");
 if (!is_user_logged_in()) {
-    header('location:logout.php');
+    echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/error-404/")</script>';
 } else {
+    global $current_user;
+
+    if( !empty($current_user->roles) ){
+      foreach ($current_user->roles as $key => $value)
+      $userId = get_current_user_id(); {
+        if( $value != 'administrator' ){ 
+            ?>
+
+            <div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Gestionar gastos personales</h4>
+
+                        <div class="table-responsive">
+
+                            <table id="example" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>SL.No</th>
+                                        <th>Id Usuario</th>
+                                        <th>Categoria</th>
+                                        <th>Nombre</th>
+                                        <th>Coste</th>
+                                        <th>Fecha del gasto</th>
+                                        <th>Pais</th>
+
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <?php
+
+                                    $sql = "select * from expense where userId = $userId";
+
+                                    $results = mysqli_query($conn, $sql);
+
+                                    $count = 1;
+
+                                    while ($row = mysqli_fetch_array($results)) {
+
+                                    ?>
+
+                                        <tr>
+                                            <td><?php echo htmlentities($count); ?></td>
+                                            <td><?php echo $row['userId']; ?></td>
+                                            <td><?php echo $row['itemCategory']; ?></td>
+                                            <td><?php echo $row['itemName']; ?></td>
+                                            <td><?php echo $row['itemCost']; ?> €</td>
+                                            <td><?php echo $row['expenseDate']; ?></td>
+                                            <td><?php echo $row['pais']; ?></td>
+                                            
+
+                                        </tr>
+                                    <?php $count = $count + 1;
+                                    }
+                                    ?>
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                    <th>SL.No</th>
+                                        <th>Id Usuario</th>
+                                        <th>Categoria</th>
+                                        <th>Nombre</th>
+                                        <th>Coste</th>
+                                        <th>Fecha del gasto</th>
+                                        <th>Pais</th>
+
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+           
+<?php
+        } else {
 
 
 if (isset($_REQUEST['delete'])) {
     $ids = $_REQUEST['id'];
     $sql = "DELETE FROM expense WHERE id = $ids";
     $result = $conn->query($sql);
+            
+        
+    
 }
 ?>
 <!-- partial -->
@@ -35,10 +124,12 @@ if (isset($_REQUEST['delete'])) {
                                 <thead>
                                     <tr>
                                         <th>SL.No</th>
+                                        <th>Id Usuario</th>
                                         <th>Categoria</th>
                                         <th>Nombre</th>
-                                        <th>Costo</th>
+                                        <th>Coste</th>
                                         <th>Fecha del gasto</th>
+                                        <th>Pais</th>
                                         <th>Accion</th>
 
                                     </tr>
@@ -47,9 +138,8 @@ if (isset($_REQUEST['delete'])) {
                                 <tbody>
 
                                     <?php
-                                    $uId = get_current_user_id();
 
-                                    $sql = "select * from expense where userId=$uId";
+                                    $sql = "select * from expense";
 
                                     $results = mysqli_query($conn, $sql);
 
@@ -61,10 +151,12 @@ if (isset($_REQUEST['delete'])) {
 
                                         <tr>
                                             <td><?php echo htmlentities($count); ?></td>
+                                            <td><?php echo $row['userId']; ?></td>
                                             <td><?php echo $row['itemCategory']; ?></td>
                                             <td><?php echo $row['itemName']; ?></td>
-                                            <td><?php echo $row['itemCost']; ?></td>
+                                            <td><?php echo $row['itemCost']; ?> €</td>
                                             <td><?php echo $row['expenseDate']; ?></td>
+                                            <td><?php echo $row['pais']; ?></td>
                                             <td>
 
                                                 <form action="" method="POST">
@@ -83,10 +175,12 @@ if (isset($_REQUEST['delete'])) {
                                 <tfoot>
                                     <tr>
                                     <th>SL.No</th>
+                                        <th>Id Usuario</th>
                                         <th>Categoria</th>
                                         <th>Nombre</th>
-                                        <th>Costo</th>
+                                        <th>Coste</th>
                                         <th>Fecha del gasto</th>
+                                        <th>Pais</th>
                                         <th>Accion</th>
 
                                     </tr>
@@ -130,4 +224,9 @@ if (isset($_REQUEST['delete'])) {
     </body>
 
     </html>
-    <?php } ?>
+    <?php 
+                }
+            }
+        } 
+    }
+    ?>

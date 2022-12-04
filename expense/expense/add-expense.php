@@ -5,7 +5,7 @@ include("base/head.php");
 include("base/db.php");
 require_once ($_SERVER ['DOCUMENT_ROOT'].'/wp-load.php');
 if (!is_user_logged_in()) {
-    header("location: Error404.php");
+    echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/error-404/")</script>';
 } else {
 
     if (isset($_POST['submit'])) {
@@ -16,8 +16,9 @@ if (!is_user_logged_in()) {
         $itemName = $_POST['itemName'];
         $itemCost = $_POST['itemCost'];
         $expenseDate = $_POST['expenseDate'];
+        $pais = $_POST['pais'];
 
-        $sql = "insert into expense(userId,itemCategory,itemName,itemCost,expenseDate) value('$userId','$itemCategory','$itemName','$itemCost','$expenseDate')";
+        $sql = "insert into expense(userId,itemCategory,itemName,itemCost,expenseDate,pais) value('$userId','$itemCategory','$itemName','$itemCost','$expenseDate','$pais')";
 
         $query = mysqli_query($conn, $sql);
 
@@ -94,7 +95,11 @@ if (!is_user_logged_in()) {
                                     </div>
 
                                 </div>
-
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Pais</label>
+                                        <input type="text" class="form-control" id="inputEmail4" placeholder="Pais" name="pais" required="true">
+                                    </div>
 
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" name="submit">
                                     <i class="mdi mdi-account"></i>

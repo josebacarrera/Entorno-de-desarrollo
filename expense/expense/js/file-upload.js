@@ -1,13 +1,3 @@
-/*------------------------------------------------------------------
-Project Name: 	Cyber Cafe Management System in PHP and MySql
-Theme URI: 	https://phpstartup.com/
-Description: 	Best PHP project for Cyber Cafe Management System
-Version: 	1
-Author: 	Nitin Kumar
-Text Domain:    phpstartup.com
-Tags: Cyber Cafe Management System in PHP and MySql
--------------------------------------------------------------------*/
-
 (function($) {
     'use strict';
     $(function() {

@@ -6,7 +6,7 @@ include("base/db.php");
 require_once ($_SERVER ['DOCUMENT_ROOT'].'/wp-load.php');
  #(strlen($_SESSION['phpstartup_userid'] == 0))
 if (!is_user_logged_in()) {
-    header('location:logout.php');
+    echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/error-404/")</script>';
 } else {
 
 
@@ -34,7 +34,7 @@ if (!is_user_logged_in()) {
             <div class="col-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Reporte del gasto mensual</h4>
+                        <h4 class="card-title">Reporte del gasto mensual (Fecha)</h4>
 
                         <br><br>
 
@@ -70,6 +70,53 @@ if (!is_user_logged_in()) {
         </div>
     </div>
 
+    <div class="main-panel">
+
+
+    <div class="content-wrapper">
+
+
+
+        <div class="row">
+
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Reporte del gasto mensual (€)</h4>
+
+                        <br><br>
+
+                        <form class="form-sample" method="post" action="reporte_mensual.php">
+
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Desde</label>
+                                    <input type="text" class="form-control" id="datetimepicker9" placeholder="~€" name="feuro">
+                                </div>
+
+                                <div class=" form-group col-md-6">
+                                    <label for="inputEmail4">Hasta</label>
+                                    <input type="text" class="form-control" id="datetimepicker10" placeholder="~€" name="teuro">
+                                </div>
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" name="submit">
+                                <i class="mdi mdi-account"></i>
+                                Buscar
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 
     <?php include("base/footer.php"); ?>
 

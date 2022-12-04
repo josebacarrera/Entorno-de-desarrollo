@@ -4,21 +4,16 @@ require_once ($_SERVER ['DOCUMENT_ROOT'].'/wp-load.php');
 include("base/header.php");
 include("base/head.php");
 include("base/db.php");
-
-
 if (!is_user_logged_in()) {
-    header("Location: Error404.php");
+    echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/error-404/")</script>';
 } else {
+    global $current_user;
 
-    function km_get_user_role( $user = null ) {
-        $user = $user ? new WP_User( $user ) : wp_get_current_user();
-    
-        return $user->roles ? $user->roles[0] : '';
-    }
-
-    if ($user != ('administrator')) {
-        echo "eres maricon";
-    }
+    if( !empty($current_user->roles) ){
+      foreach ($current_user->roles as $key => $value) {
+        if( $value != 'administrator' ){
+            echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/wp-content/expense/index.php")</script>';
+        } else {
 
     if (isset($_POST['submit'])) {
 
@@ -34,9 +29,9 @@ if (!is_user_logged_in()) {
         // } else {
         //     echo "<script>alert('Something went wrong. Please try again');</script>";
         // }
-           
-        
-        
+                }
+            }
+        }
     }
 ?>
 
@@ -81,7 +76,6 @@ if (!is_user_logged_in()) {
             </div>
         </div>
         <!-- content-wrapper ends -->
-
         <?php include("base/footer.php"); ?>
 
     <?php }  ?>

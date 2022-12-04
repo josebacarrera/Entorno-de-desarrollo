@@ -6,7 +6,7 @@ include("base/header.php");
 include("base/head.php");
 include("base/db.php");
 if (!is_user_logged_in()) {
-    header('location:logout.php');
+    echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/error-404/")</script>';
 } else {
 
 
@@ -35,7 +35,7 @@ if (!is_user_logged_in()) {
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Reporte de gastos</h4>
+                            <h4 class="card-title">Reporte de gastos anuales (Fecha)</h4>
 
                             <div class="table-responsive">
                                 <?php
@@ -49,14 +49,14 @@ if (!is_user_logged_in()) {
                                         <tr>
                                             <th>S.NO</th>
                                             <th>Fecha</th>
-                                            <th>Cantidad gastada</th>
+                                            <th>Cantida Gastada</th>
                                         </tr>
                                         </tr>
                                     </thead>
 
                                     <?php
                                     $userId = get_current_user_id();
-                                    $sql = "SELECT expenseDate,SUM(itemCost) as totaldaily FROM `expense` where (expenseDate BETWEEN '$fdate' and '$tdate') && (userId='$userId') group by expenseDate";
+                                    $sql = "SELECT year(expenseDate) as rptyear,SUM(expenseDate) as totalyear FROM expense where (expenseDate BETWEEN '$fdate' and '$tdate') && (userId='$userId') group by year(expenseDate)";
                                     $query = mysqli_query($conn, $sql);
                                     $count = 1;
                                     while ($row = mysqli_fetch_array($query)) {
@@ -64,17 +64,17 @@ if (!is_user_logged_in()) {
                                     ?>
                                         <tr class="tblpad">
                                             <td><?php echo $count; ?></td>
-                                            <td><?php echo $row['expenseDate']; ?></td>
-                                            <td><?php echo $ttlsl = $row['totaldaily']; ?></td>
+                                            <td><?php echo $row['rptyear']; ?></td>
+                                            <td><?php echo $ttlsl = $row['totalyear']; ?> €</td>
                                         </tr>
                                     <?php
-                                        $totalsexp += $ttlsl;
-                                        $count = $count + 1;
+                                      $totalsexp += $ttlsl;
+                                      $count = $count + 1;
                                     } ?>
 
                                     <tr>
                                         <th colspan="2" style="text-align:center">Total</th>
-                                        <td><?php echo $totalsexp; ?></td>
+                                        <td><?php echo $totalsexp; ?> €</td>
                                     </tr>
 
 
@@ -87,6 +87,8 @@ if (!is_user_logged_in()) {
                 </div>
             </div>
         </div>
+
+        <div class="main-panel">
 
 
         <?php include("base/footer.php"); ?>

@@ -113,6 +113,12 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="usuarios.php">
+                        <i class="mdi mdi-account-multiple menu-icon"></i>
+                        <span class="menu-title">Usuarios </span>
+                    </a>
+                </li>
 
                 <li class="nav-item sidebar-category">
                     <p>Paginas</p>

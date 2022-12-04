@@ -6,7 +6,7 @@ include("base/head.php");
 include("base/db.php");
 
 if (!is_user_logged_in()) {
-    header('location:logout.php');
+    echo 'No has iniciado sesion <script language="javascript">window.location.replace("https://wordpress.maristak.com/error-404/")</script>';
 } else {
 
     if (isset($_POST['submit'])) {
@@ -51,20 +51,20 @@ if (!is_user_logged_in()) {
 
                                 <div class="form-group">
                                     <label for="inputAddress">Contrasena actual</label>
-                                    <input type="password" class="form-control" id="currentpassword" placeholder="Created Date" name="currentpassword" required>
+                                    <input type="password" class="form-control" id="currentpassword" placeholder="Contrasena actual" name="currentpassword" required>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Nueva contrasena</label>
-                                        <input type="password" class="form-control" id="npass" placeholder="Admin Name" name="newpassword" required>
+                                        <input type="password" class="form-control" id="npass" placeholder="Nueva contrasena" name="newpassword" required>
                                         <span class="text-danger font-weight-bold"> </span>
 
                                     </div>
 
                                     <div class=" form-group col-md-6">
                                         <label for="inputEmail4">Confirma la contrasena</label>
-                                        <input type="password" class="form-control" id="cpass" placeholder="User Name" name="confirmpassword" required>
+                                        <input type="password" class="form-control" id="cpass" placeholder="Confirma la contrasena" name="confirmpassword" required>
                                         <span id="confrmpass" class="text-danger font-weight-bold"> </span>
 
                                     </div>
